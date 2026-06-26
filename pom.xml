@@ -10,42 +10,29 @@
     <description>A lightweight utility plugin for extra functions on gold tools during weekends.</description>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>8</java.version>
+        <tsunami.version>1.0.8</tsunami.version>
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <repositories>
-        <!-- Repository for resolving release dependencies -->
         <repository>
-            <id>johnymuffin-nexus-releases</id>
-            <url>https://repository.johnymuffin.com/repository/maven-public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <!-- Repository for resolving snapshot dependencies -->
-        <repository>
-            <id>johnymuffin-nexus-snapshots</id>
-            <url>https://repository.johnymuffin.com/repository/maven-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+            <id>jitpack</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.github.BetaMC-Developers</groupId>
+            <artifactId>Tsunami</artifactId>
+            <version>${tsunami.version}</version>
+        </dependency>
+    </dependencies>
+
     <build>
+        <defaultGoal>clean package</defaultGoal>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -56,31 +43,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <release>${java.version}</release>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
-
-    <dependencies>
-
-        <dependency>
-            <groupId>com.legacyminecraft.poseidon</groupId>
-            <artifactId>poseidon-craftbukkit</artifactId>
-            <version>1.1.8</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.10-R0.1-20160623.004001-36</version>
-            <scope>provided</scope>
-        </dependency>
-
-    </dependencies>
-
 </project>
